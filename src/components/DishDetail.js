@@ -1,20 +1,16 @@
-
-import React, { Component } from 'react';
+import React from 'react'
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap'
 
 
-class DishDetail extends Component {
+const DishDetail = (props) => {
 
-
-
-    render() {
 
         let ret = <div className="row"></div>;
-        if (!this.props.dish) // short circuit if there is no dish
+        if (!props.dish) // short circuit if there is no dish
             return ret;
 
 
-        let review_txt = this.props.dish.reviews.map(
+        let review_txt = props.dish.reviews.map(
             (review) => {
                 return (<div key={review.id} >
                     <p> {review.text} </p>
@@ -28,10 +24,10 @@ class DishDetail extends Component {
             <div className="row">
                 <div className="col-12 col-md-5 m-1">
                     <Card>
-                        <CardImg width="100%" src={this.props.dish.image} alt={this.props.dish.name} />
+                        <CardImg width="100%" src={props.dish.image} alt={props.dish.name} />
                         <CardBody>
-                            <CardTitle>{this.props.dish.name}</CardTitle>
-                            <CardText>{this.props.dish.description}</CardText>
+                            <CardTitle>props.dish.name}</CardTitle>
+                            <CardText>{props.dish.description}</CardText>
                         </CardBody>
 
                     </Card>
@@ -43,7 +39,6 @@ class DishDetail extends Component {
             </div>
 
         return ret;
-    }
-};
+    };
 
 export default DishDetail;
