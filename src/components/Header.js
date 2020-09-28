@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand, Nav, NavItem, NavbarToggler, Collapse, Jumbotron } from 'reactstrap'
 import { NavLink } from 'react-router-dom';
+import { Collapse, Jumbotron, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem } from 'reactstrap';
 
 class Header extends Component {
   
@@ -10,10 +10,9 @@ class Header extends Component {
     this.state = {
       isNavOpen: false
     }
-    this.toggleNav = this.toggleNav.bind(this)
   }
   
-  toggleNav = () => {
+  toggleNav () {
     this.setState({ isNavOpen : !this.state.isNavOpen })
   };
 
@@ -22,7 +21,7 @@ class Header extends Component {
       <React.Fragment>
         <Navbar dark expand="md">
           <div className="container">
-            <NavbarToggler onClick={this.toggleNav} />
+            <NavbarToggler onClick={this.toggleNav.bind(this)} />
             <NavbarBrand className="mr-auto" href="/">
                <img src="assets/images/logo.png" height="30" width="30" alt="Ristorante Con Fusion" />
             </NavbarBrand>
