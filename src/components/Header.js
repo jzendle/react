@@ -1,29 +1,78 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Collapse, Jumbotron, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem } from 'reactstrap';
+
+
+import {
+  Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
+  Button, Modal, ModalHeader, ModalBody,
+  Form, FormGroup, Input, Label
+} from 'reactstrap';
+
 
 class Header extends Component {
-  
+
   constructor(props) {
     super(props);
-
     this.state = {
-      isNavOpen: false
-    }
+      isNavOpen: false,
+      isModalOpen: false
+    };
   }
-  
-  toggleNav () {
-    this.setState({ isNavOpen : !this.state.isNavOpen })
+
+
+  toggleModal() {
+    this.setState({
+      isModalOpen: !this.state.isModalOpen
+    });
+  }
+
+  toggleNav() {
+    this.setState({ isNavOpen: !this.state.isNavOpen })
   };
+
+  handleLogin(event) {
+    this.toggleModal();
+    alert("Username: " + this.username.value + " Password: " + this.password.value
+      + " Remember: " + this.remember.checked);
+    event.preventDefault();
+
+  }
+
 
   render() {
     return (
       <React.Fragment>
+        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal.bind(this)}>
+          <ModalHeader toggle={this.toggleModal.bind(this)}>Login</ModalHeader>
+          <ModalBody>
+            // uncontrolled form
+            <Form onSubmit={this.handleLogin.bind(this)}>
+              <FormGroup>
+                <Label htmlFor="username">Username</Label>
+                <Input type="text" id="username" name="username"
+                  innerRef={(input) => this.username = input} />
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="password">Password</Label>
+                <Input type="password" id="password" name="password"
+                  innerRef={(input) => this.password = input} />
+              </FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input type="checkbox" name="remember"
+                    innerRef={(input) => this.remember = input} />
+                                    Remember me
+                                </Label>
+              </FormGroup>
+              <Button type="submit" value="submit" color="primary">Login</Button>
+            </Form>
+          </ModalBody>
+        </Modal>
         <Navbar dark expand="md">
           <div className="container">
             <NavbarToggler onClick={this.toggleNav.bind(this)} />
             <NavbarBrand className="mr-auto" href="/">
-               <img src="assets/images/logo.png" height="30" width="30" alt="Ristorante Con Fusion" />
+              <img src="assets/images/logo.png" height="30" width="30" alt="Ristorante Con Fusion" />
             </NavbarBrand>
             <Collapse isOpen={this.state.isNavOpen} navbar>
               <Nav navbar>
@@ -46,6 +95,11 @@ class Header extends Component {
                   <NavLink className="nav-link" to="/contactus">
                     <span className="fa fa-address-card fa-lg"></span>Contact us
                 </NavLink>
+                </NavItem>
+              </Nav>
+              <Nav className="ml-auto" navbar>
+                <NavItem>
+                  <Button outline onClick={this.toggleModal.bind(this)}><span className="fa fa-sign-in fa-lg"></span> Login</Button>
                 </NavItem>
               </Nav>
             </Collapse>
