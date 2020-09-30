@@ -6,7 +6,10 @@ function About(props) {
 
     const leaders = props.leaders.map((leader) => {
         return (
-            <RenderLeader leader={leader} />
+            <div key={leader.id}>
+
+                <RenderLeader leader={leader} />
+            </div>
         );
     });
     // id: 2,
@@ -19,13 +22,11 @@ function About(props) {
     function RenderLeader(props) {
         return (
             <React.Fragment>
-
-                <div className="row" key={props.leader.id} >
+                <div className="row" >
                     <Media>
                         <div className="col-2" >
                             <Media left href="#">
                                 <Media object src={props.leader.image} alt={props.leader.image} />
-
                             </Media>
                         </div>
                         <Media body>
