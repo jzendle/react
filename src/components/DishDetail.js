@@ -16,14 +16,18 @@ const RenderDish = (props) => {
 
 const RenderComments = (props) => {
     return (
-        props.comments.map(
-            (comment) => {
-            return (
-                <div key={comment.id}> <p> {comment.comment}</p></div>
+        <React.Fragment>
+            <h4>Customer Comments</h4>
+            { props.comments.map(
+                (comment) => {
+                    return (
+                        <div key={comment.id}> <p> {comment.comment}</p></div>
+                    )
+                }
             )
-        }
-        ) // map
-     ) // return
+            }
+        </React.Fragment>
+    )
 }
 
 const DishDetail = (props) => {
@@ -44,7 +48,7 @@ const DishDetail = (props) => {
                 <div className="col-12 col-md-5 m-1">
                     <RenderDish dish={props.dish} />
                 </div>
-                <div className="col-12 col-md-5 m-1">
+                <div className="col col-md-5 m-1">
                     <RenderComments comments={props.comments} />
                 </div>
             </div>
