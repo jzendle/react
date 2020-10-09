@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Form, 
     FormGroup, Label, Input, Col, 
-    Row, FormFeedback } from 'reactstrap';
+    FormFeedback } from 'reactstrap';
 
 class Contact extends Component {
 

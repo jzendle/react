@@ -45,7 +45,7 @@ class Header extends Component {
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal.bind(this)}>
           <ModalHeader toggle={this.toggleModal.bind(this)}>Login</ModalHeader>
           <ModalBody>
-            // uncontrolled form
+            {/* uncontrolled form */}
             <Form onSubmit={this.handleLogin.bind(this)}>
               <FormGroup>
                 <Label htmlFor="username">Username</Label>

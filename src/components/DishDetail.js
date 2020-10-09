@@ -1,4 +1,5 @@
 import React from 'react'
+import CommentForm from './CommentForm';
 import { Card, CardImg, CardBody, CardText, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
@@ -50,9 +51,11 @@ const DishDetail = (props) => {
                 </div>
                 <div className="col col-md-5 m-1">
                     <RenderComments comments={props.comments} />
+                    <CommentForm />
                 </div>
             </div>
         </div>
+
     )
 }
 

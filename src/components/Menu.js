@@ -15,7 +15,7 @@ function RenderMenuItem({ dish }) {
     );
 }
 
-const Menu = (props) => {
+const Menu = props => {
 
     const menu = props.dishes.map((dish) => {
         return (
