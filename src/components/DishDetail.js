@@ -2,6 +2,7 @@ import React from 'react'
 import CommentForm from './CommentForm';
 import { Card, CardImg, CardBody, CardText, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { addComment } from '../redux/ActionCreators';
 
 const RenderDish = (props) => {
     return (
@@ -14,12 +15,13 @@ const RenderDish = (props) => {
         </Card>
     );
 }
+function RenderComments({comments, addCommentFunc, dishId}) {
 
-const RenderComments = (props) => {
+// const RenderComments = (props) => {
     return (
         <React.Fragment>
             <h4>Customer Comments</h4>
-            { props.comments.map(
+            { comments.map(
                 (comment) => {
                     return (
                         <div key={comment.id}> <p> {comment.comment}</p></div>
@@ -50,8 +52,10 @@ const DishDetail = (props) => {
                     <RenderDish dish={props.dish} />
                 </div>
                 <div className="col col-md-5 m-1">
-                    <RenderComments comments={props.comments} />
-                    <CommentForm />
+                    <RenderComments comments={props.comments}
+                    addCommentFunc={props.addCommentFunc} 
+                    dishId={props.dish.id} />
+                    <CommentForm dishId={props.dish.id} addCommentFunc={props.addCommentFunc}/>
                 </div>
             </div>
         </div>

@@ -16,11 +16,14 @@ class CommentForm extends Component {
 
         this.state = {
             isModalOpen: false,
-            comment: 'fill me'
         }
 
-        this.toggleCommentModal.bind(this)
-        this.handleModal.bind(this)
+        // this.comment = '';
+
+        this.toggleCommentModal.bind(this);
+        this.handleModal.bind(this);
+
+        (JSON.stringify(props));
 
     }
 
@@ -30,11 +33,10 @@ class CommentForm extends Component {
         });
     }
 
-    handleModal() {
-        alert(this.comment.value)
+    handleModal(values) {
         this.toggleCommentModal();
-        this.setState({ comment: this.comment.value })
-        alert(this.state.comment);
+        // alert(JSON.stringify(this.props))
+        this.props.addCommentFunc(this.props.dishId, 5 , 'JoeZ', this.comment.value);
     }
 
     // <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal.bind(this)}>
@@ -43,21 +45,21 @@ class CommentForm extends Component {
     render() {
         return (
             <React.Fragment>
-                <Modal isOpen={this.state.isModalOpen} toggle={() => this.toggleCommentModal().bind(this)}>
-                    <ModalHeader toggle={() => this.toggleCommentModal().bind(this)}>Comments</ModalHeader>
+                <Modal isOpen={this.state.isModalOpen} toggle={() => this.toggleCommentModal() }>
+                    <ModalHeader toggle={() => this.toggleCommentModal() }>Comments</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={() => this.handleModal()}>
                             <FormGroup>
                                 <Label htmlFor="comment">Comment</Label>
                                 <Input type="textarea" id="comment" name="comment"
-                                    innerRef={(input) => this.comment = input} />
+                                    innerRef={(input) => { this.comment = input } } />
                             </FormGroup>
                             <Button type="submit" value="submit" color="primary">Submit</Button>
 
                         </Form>
                     </ModalBody>
                 </Modal>
-                <Button onClick={() => { this.toggleCommentModal() }}>Add Comment</Button>
+                <Button onClick={(values) => this.toggleCommentModal(values) }>Add Comment</Button>
 
             </React.Fragment>
         );
