@@ -5,10 +5,6 @@ import {
     Form, FormGroup, Input, Label
 } from 'reactstrap';
 
-const RenderButton = (props) => {
-    return (<Button outline onClick={this.toggleModal()}>Add Comment</Button>);
-
-}
 
 class CommentForm extends Component {
     constructor(props) {
@@ -36,7 +32,7 @@ class CommentForm extends Component {
     handleModal(values) {
         this.toggleCommentModal();
         // alert(JSON.stringify(this.props))
-        this.props.addCommentFunc(this.props.dishId, 5 , 'JoeZ', this.comment.value);
+        this.props.addComment(this.props.dishId, 5 , 'JoeZ', this.comment.value);
     }
 
     // <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal.bind(this)}>
