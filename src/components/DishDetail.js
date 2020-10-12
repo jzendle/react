@@ -3,11 +3,12 @@ import CommentForm from './CommentForm';
 import { Card, CardImg, CardBody, CardText, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
+import { baseUrl } from '../shared/baseurl';
 
 const RenderDish = (props) => {
     return (
         <Card>
-            <CardImg width="100%" src={props.dish.image} alt={props.dish.name} />
+            <CardImg width="100%" src={baseUrl + props.dish.image} alt={props.dish.name} />
             <CardBody>
                 <CardTitle>{props.dish.name}</CardTitle>
                 <CardText>{props.dish.description}</CardText>

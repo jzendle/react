@@ -1,6 +1,7 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseurl';
 
 function About(props) {
 
@@ -25,7 +26,7 @@ function About(props) {
                     <Media>
                         <div className="col-2" >
                             <Media left href="#">
-                                <Media object src={props.leader.image} alt={props.leader.image} />
+                                <Media object src={baseUrl + props.leader.image} alt={props.leader.image} />
                             </Media>
                         </div>
                         <Media body>
