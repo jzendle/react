@@ -24,15 +24,16 @@ class CommentForm extends Component {
     }
 
     toggleCommentModal() {
+        // alert('toggleCommentModal');
         this.setState({
             isModalOpen: !this.state.isModalOpen
         });
     }
 
-    handleModal(values) {
+    handleModal() {
         this.toggleCommentModal();
-        // alert(JSON.stringify(this.props))
-        this.props.addComment(this.props.dishId, 5 , 'JoeZ', this.comment.value);
+        // alert('handleModal');
+        this.props.postComment(this.props.dishId, 5 , 'JoeZ', this.comment.value);
     }
 
     // <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal.bind(this)}>
@@ -55,6 +56,7 @@ class CommentForm extends Component {
                         </Form>
                     </ModalBody>
                 </Modal>
+                {/* <Button onClick={(values) => this.toggleCommentModal(values) }>Add Comment</Button> */}
                 <Button onClick={(values) => this.toggleCommentModal(values) }>Add Comment</Button>
 
             </React.Fragment>

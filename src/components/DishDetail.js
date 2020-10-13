@@ -16,7 +16,7 @@ const RenderDish = (props) => {
         </Card>
     );
 }
-function RenderComments({ comments, addComment, dishId }) {
+function RenderComments({ comments }) {
 
     // const RenderComments = (props) => {
     return (
@@ -35,6 +35,7 @@ function RenderComments({ comments, addComment, dishId }) {
 }
 
 const DishDetail = (props) => {
+    // alert('DishDetail postComment' + JSON.stringify(props.postComment))
     if (props.isLoading) {
         return (
             <div className="container">
@@ -72,10 +73,8 @@ const DishDetail = (props) => {
                         <RenderDish dish={props.dish} />
                     </div>
                     <div className="col col-md-5 m-1">
-                        <RenderComments comments={props.comments}
-                            addComment={props.addComment}
-                            dishId={props.dish.id} />
-                        <CommentForm dishId={props.dish.id} addComment={props.addComment} />
+                        <RenderComments comments={props.comments} />
+                        <CommentForm dishId={props.dish.id} postComment={props.postComment} />
                     </div>
                 </div>
             </div>
