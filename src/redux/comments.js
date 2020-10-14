@@ -7,10 +7,12 @@ export const Comments = (state = {
     switch (action.type) {
         case ActionTypes.ADD_COMMENT:
             var comment = action.payload;
-            console.log("Comment: ", comment);
+            console.log("in ADD_COMMENT ");
             return { ...state, errMess: null, comments: state.comments.concat(comment)};
             
         case ActionTypes.ADD_COMMENTS:
+
+            console.log("in ADD_COMMENTS ");
             return {...state,  isLoading: false, errMess: null, comments: action.payload};
 
         // case ActionTypes.COMMENTS_LOADING:

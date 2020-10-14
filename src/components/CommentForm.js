@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 
 import {
     Button, Modal, ModalHeader, ModalBody,
-    Form, FormGroup, Input, Label
+    FormGroup, Input, Label
 } from 'reactstrap';
+
+import { Control, LocalForm, Errors } from 'react-redux-form';
+
 
 
 class CommentForm extends Component {
@@ -45,7 +48,7 @@ class CommentForm extends Component {
                 <Modal isOpen={this.state.isModalOpen} toggle={() => this.toggleCommentModal() }>
                     <ModalHeader toggle={() => this.toggleCommentModal() }>Comments</ModalHeader>
                     <ModalBody>
-                        <Form onSubmit={() => this.handleModal()}>
+                        <LocalForm onSubmit={(values) => this.handleModal(values)}>
                             <FormGroup>
                                 <Label htmlFor="comment">Comment</Label>
                                 <Input type="textarea" id="comment" name="comment"
@@ -53,11 +56,11 @@ class CommentForm extends Component {
                             </FormGroup>
                             <Button type="submit" value="submit" color="primary">Submit</Button>
 
-                        </Form>
+                        </LocalForm>
                     </ModalBody>
                 </Modal>
                 {/* <Button onClick={(values) => this.toggleCommentModal(values) }>Add Comment</Button> */}
-                <Button onClick={(values) => this.toggleCommentModal(values) }>Add Comment</Button>
+                <Button onClick={(values) => this.toggleCommentModal() }>Add Comment</Button>
 
             </React.Fragment>
         );
