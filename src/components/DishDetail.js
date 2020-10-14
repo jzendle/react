@@ -4,33 +4,51 @@ import { Card, CardImg, CardBody, CardText, CardTitle, Breadcrumb, BreadcrumbIte
 import { Link } from 'react-router-dom';
 import Loading from './Loading';
 import { baseUrl } from '../shared/baseurl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const RenderDish = (props) => {
     return (
-        <Card>
-            <CardImg width="100%" src={baseUrl + props.dish.image} alt={props.dish.name} />
-            <CardBody>
-                <CardTitle>{props.dish.name}</CardTitle>
-                <CardText>{props.dish.description}</CardText>
-            </CardBody>
-        </Card>
+        <div className="col-12 col-md-5 m-1" >
+            <FadeTransform in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%) '
+                }} >
+                <Card>
+                    <CardImg width="100%" src={baseUrl + props.dish.image} alt={props.dish.name} />
+                    <CardBody>
+                        <CardTitle>{props.dish.name}</CardTitle>
+                        <CardText>{props.dish.description}</CardText>
+                    </CardBody>
+                </Card>
+            </FadeTransform>
+        </div>
     );
 }
-function RenderComments({ comments }) {
+function RenderComments({ comments, dishId, postComment }) {
 
     // const RenderComments = (props) => {
     return (
-        <React.Fragment>
+        <div className="col-12 col-md-5 m-1" >
             <h4>Customer Comments</h4>
-            { comments.map(
-                (comment) => {
-                    return (
-                        <div key={comment.id}> <p> {comment.comment}</p></div>
+            <ul className="list-unstyled">
+                <Stagger in>
+                    {comments.map(
+                        (comment) => {
+                            return (
+                                <Fade in >
+                                    <li key={comment.id}>
+                                        <p> {comment.comment}</p>
+                                        <p> {comment.author}, {comment.date}</p>
+                                    </li>
+                                </Fade>
+                            )
+                        }
                     )
-                }
-            )
-            }
-        </React.Fragment>
+                    }
+                </Stagger>
+            </ul>
+            <CommentForm dishId={dishId} postComment={postComment} />
+        </div>
     )
 }
 
@@ -69,13 +87,8 @@ const DishDetail = (props) => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-12 col-md-5 m-1">
-                        <RenderDish dish={props.dish} />
-                    </div>
-                    <div className="col col-md-5 m-1">
-                        <RenderComments comments={props.comments} />
-                        <CommentForm dishId={props.dish.id} postComment={props.postComment} />
-                    </div>
+                    <RenderDish dish={props.dish} />
+                    <RenderComments comments={props.comments} dishId={props.dish.id} postComment={props.postComment} />
                 </div>
             </div>
 
