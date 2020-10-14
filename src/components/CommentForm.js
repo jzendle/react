@@ -35,13 +35,16 @@ class CommentForm extends Component {
 
     handleModal() {
         this.toggleCommentModal();
-        // alert('handleModal');
+        // worked with LocalForm - regular Form caused page refresh and
+        // POST results were not being able to be fetched
         this.props.postComment(this.props.dishId, 5 , 'JoeZ', this.comment.value);
     }
 
     // <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal.bind(this)}>
     // <ModalHeader toggle={this.toggleModal.bind(this)}>Login</ModalHeader>
 
+    // Use LocalForm not Form - stops the page from being rerouted through Router
+    // causing full page load
     render() {
         return (
             <React.Fragment>
